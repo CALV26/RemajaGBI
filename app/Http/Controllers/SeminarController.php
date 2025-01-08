@@ -90,7 +90,7 @@ class SeminarController extends Controller
             'description' => $request->description,
             'status' => 'open',
             'max_participants' => $request->max_participants,
-            'poster_file' => $posterPath,
+            'poster' => $posterPath,
             'event_date' => $request->event_date,
             'start' => $request->start,
             'registration_start' => $request->registration_start,

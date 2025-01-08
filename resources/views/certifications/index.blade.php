@@ -80,8 +80,8 @@
                     @empty
                         <tr>
                             <td colspan="9" class="text-center">
-                                <div class="p-3 mb-2 bg-danger text-white">
-                                    Data Sertifikasi belum tersedia.
+                                <div class="alert alert-danger mb-0">
+                                    Data pengajuan belum tersedia.
                                 </div>
                             </td>
                         </tr>

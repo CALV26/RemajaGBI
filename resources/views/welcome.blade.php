@@ -5,36 +5,35 @@
   <!-- ========== HERO SECTION ========== -->
   <section class="hero">
     <div class="container text-center">
-      <h1>Selamat Datang di Sekolah Minggu</h1>
+      <h1>Welcome, youth!</h1>
       <p>GBI Sungai Yordan</p>
     </div>
   </section>
 
   <!-- ========== VISI DAN MISI ========== -->
-  <div class="container my-5" id="visi-misi">
-    <div class="row text-center mb-5">
+  <div class="container my-5 pt-5" id="visi-misi">
+    <div class="row text-center">
       <div class="col-12">
-        <h2 class="fw-bold" style="color: #0d6efd; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+        <h2 class="fw-bold" style="color:rgb(240, 240, 240); text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
           Visi dan Misi
         </h2>
-        <p class="text-muted">Membangun Generasi Muda yang Beriman dan Berkarakter</p>
+        <p class="text">Bertumbuh dalam Kasih, Bersinar dalam Iman</p>
       </div>
     </div>
-    <div class="row d-flex align-items-stretch">
+    <div class="row d-flex align-items-stretch p-5">
       <!-- VISI -->
       <div class="col-md-6 mb-4">
         <div 
-          class="card shadow-sm border-0 h-100" 
-          style="background: linear-gradient(135deg, #0d6efd, #2b98f0); color: #fff;"
+          class="card shadow-sm border-0 h-100 px-5 py-3" 
+          style="background: linear-gradient(135deg,rgb(165, 106, 113),rgb(33, 66, 94)); color: #fff;"
         >
           <div class="card-body text-center d-flex flex-column">
             <div class="mb-3">
-              <i class="fa-solid fa-eye fa-3x"></i>
+              <!-- <i class="fa-solid fa-eye fa-2x"></i> -->
             </div>
             <h5 class="fw-bold">Visi</h5>
             <p class="mt-2">
-              Menjadi komunitas rohani yang membawa anak-anak dan keluarga lebih dekat kepada Tuhan, 
-              memupuk iman yang kuat, dan menanamkan nilai-nilai Kristiani dalam kehidupan sehari-hari.
+              Menjadi komunitas remaja yang berakar kuat dalam iman, bertumbuh bersama dalam kasih Kristus, dan berdampak positif bagi gereja, masyarakat, serta dunia.
             </p>
             <div class="mt-auto"></div>
           </div>
@@ -44,20 +43,19 @@
       <!-- MISI -->
       <div class="col-md-6 mb-4">
         <div 
-          class="card shadow-sm border-0 h-100" 
-          style="background: linear-gradient(135deg, #198754, #23b168); color: #fff;"
+          class="card shadow-sm border-0 h-100 px-5 py-3" 
+          style="background: linear-gradient(135deg,rgb(33, 66, 94),rgb(101, 146, 125)); color: #fff;"
         >
           <div class="card-body text-center d-flex flex-column">
             <div class="mb-3">
-              <i class="fa-solid fa-bullseye fa-3x"></i>
+              <!-- <i class="fa-solid fa-bullseye fa-2x"></i> -->
             </div>
             <h5 class="fw-bold">Misi</h5>
-            <ul class="list-unstyled mt-2 text-start">
-              <li>- Mengadakan kegiatan sekolah minggu yang menyenangkan dan mendidik.</li>
-              <li>- Membimbing anak-anak untuk mengenal Tuhan Yesus lebih dalam.</li>
-              <li>- Membangun komunitas yang saling mendukung secara rohani.</li>
-              <li>- Mendorong keterlibatan keluarga dalam pembentukan iman anak-anak.</li>
-            </ul>
+            <ol class="mt-2 text-start">
+              <li>Mendekatkan diri kepada Kristus melalui ibadah, doa, dan pendalaman firman Tuhan.</li>
+              <li>Membangun komunitas yang saling mendukung dalam kasih dan persahabatan Kristus</li>
+              <li>Mendorong remaja untuk berdampak positif bagi gereja dan masyarakat.</li>
+            </ol>
             <div class="mt-auto"></div>
           </div>
         </div>
@@ -67,37 +65,9 @@
 
   <!-- ========== SECTION INFO: 3 Kolom Singkat ========== -->
   <div class="container my-5" id="info">
-    <div class="row text-center">
-      <div class="col-md-4 mb-4">
-        <img 
-          src="{{ asset('admintemp/img/boy.png') }}" 
-          alt="icon1" 
-          class="mb-3"
-          style="width: 60px; height: 60px; object-fit: cover;"
-        >
-        <h5 class="fw-bold">Menyenangkan</h5>
-        <p>Kegiatan pujian dan bimbingan interaktif yang membuat anak-anak betah.</p>
-      </div>
-      <div class="col-md-4 mb-4">
-        <img 
-          src="{{ asset('admintemp/img/pray.png') }}" 
-          alt="icon2" 
-          class="mb-3"
-          style="width: 60px; height: 60px; object-fit: cover;"
-        >
-        <h5 class="fw-bold">Membangun Iman</h5>
-        <p>Membantu membentuk karakter dan nilai-nilai Kristiani sejak dini.</p>
-      </div>
-      <div class="col-md-4 mb-4">
-        <img 
-          src="{{ asset('admintemp/img/family-member.png') }}" 
-          alt="icon3" 
-          class="mb-3"
-          style="width: 60px; height: 60px; object-fit: cover;"
-        >
-        <h5 class="fw-bold">Komunitas</h5>
-        <p>Memperluas pertemanan rohani bagi semua anggota keluarga.</p>
-      </div>
+    <div class="church col-12 d-flex flex-column justify-content-end align-items-start p-5">
+      <h3>GBI Sungai Yordan</h3>
+      <p>Jl. Ratu Melati Blok D3, RT.7/RW.13, Duri Kepa, Kec. Kb. Jeruk, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11510</p>
     </div>
   </div>
 
@@ -115,7 +85,7 @@
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img 
-            src="https://picsum.photos/1920/1080?random=1" 
+            src="{{ asset('admintemp/img/landing-slide1.jpg') }}" 
             class="d-block w-100" 
             alt="Slide 1"
             style="object-fit: cover; height: 400px;"
@@ -123,7 +93,7 @@
         </div>
         <div class="carousel-item">
           <img 
-            src="https://picsum.photos/1920/1080?random=2" 
+            src="{{ asset('admintemp/img/landing-slide2.jpg') }}" 
             class="d-block w-100" 
             alt="Slide 2"
             style="object-fit: cover; height: 400px;"
@@ -131,7 +101,7 @@
         </div>
         <div class="carousel-item">
           <img 
-            src="https://picsum.photos/1920/1080?random=3" 
+            src="{{ asset('admintemp/img/landing-slide3.jpg') }}" 
             class="d-block w-100" 
             alt="Slide 3"
             style="object-fit: cover; height: 400px;"
@@ -152,54 +122,49 @@
   </div>
 
   <!-- ========== SECTION TABEL JADWAL ========== -->
-  <div class="container my-5">
+  <div id="jadwal" class="container my-5">
     <div class="row">
       <div class="col text-center">
-        <h2 class="mb-4" id="jadwal">Jadwal Sekolah Minggu</h2>
-        <p>Berikut jadwal sekolah minggu GBI Sungai Yordan:</p>
+        <h2 class="mb-4">Jadwal</h2>
       </div>
     </div>
 
     <div class="row justify-content-center">
       <div class="col-md-10">
-        <div class="card shadow-sm border-0">
-          <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">Jadwal Kelas</h5>
+        <div class="shadow-sm border-0 rounded overflow-hidden">
+          <div class="bg-dark text-white text-center py-2">
+            <h5 class="mb-0">Jadwal Baptisan</h5>
           </div>
-          <div class="card-body p-0">
+          <div class="p-0">
             <div class="table-responsive">
               <table class="table table-striped table-hover mb-0">
-                <thead class="bg-light">
+                <thead class="bg-light text-center">
                   <tr>
-                    <th>Hari</th>
-                    <th>Jam</th>
-                    <th>Nama Kelas</th>
+                    <th>Tanggal Baptis</th>
+                    <th>Tanggal Kelas</th>
+                    <th>Hari Kelas</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @if(isset($classes) && $classes->count() > 0)
-                    @foreach($classes as $class)
-                      @foreach($class->schedules as $schedule)
+                  @if(isset($baptists) && $baptists->count() > 0)
+                    @foreach($baptists as $baptist)
+                      @foreach($baptist->details as $detail)
                         <tr>
-                          {{-- Hari --}}
-                          <td>{{ ucfirst($schedule->day) }}</td>
+                          {{-- Tanggal Baptisan --}}
+                          <td>{{ $baptist->date }}</td>
+                          
+                          {{-- Tanggal Kelas --}}
+                          <td>{{ $detail->date }}</td>
 
-                          {{-- Jam --}}
-                          <td>
-                            {{ \Carbon\Carbon::parse($schedule->start)->format('H:i') }}
-                            -
-                            {{ \Carbon\Carbon::parse($schedule->end)->format('H:i') }}
-                          </td>
-
-                          {{-- Nama Kelas --}}
-                          <td>{{ $class->name }}</td>
+                          {{-- Hari Kelas --}}
+                          <td>{{ \Carbon\Carbon::parse($detail->date)->format('l') }}</td>
                         </tr>
                       @endforeach
                     @endforeach
                   @else
                     <tr>
                       <td colspan="3" class="text-center">
-                        Belum ada jadwal sekolah minggu yang terdaftar.
+                        Belum ada jadwal.
                       </td>
                     </tr>
                   @endif
@@ -209,6 +174,50 @@
           </div> <!-- end .card-body -->
         </div> <!-- end .card -->
       </div> <!-- end .col -->
+
+      <div class="col-md-10 mt-5">
+        <div class="shadow-sm border-0 rounded overflow-hidden">
+          <div class="bg-dark text-white text-center py-2">
+            <h5 class="mb-0">Jadwal Seminar</h5>
+          </div>
+          <div class="p-0">
+            <div class="table-responsive">
+              <table class="table table-striped table-hover mb-0">
+                <thead class="bg-light text-center">
+                  <tr>
+                    <th>Tanggal</th>
+                    <th>Hari</th>
+                    <th>Jam</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @if(isset($seminars) && $seminars->count() > 0)
+                    @foreach($seminars as $seminar)
+                      <tr>
+                        {{-- Tanggal --}}
+                        <td>{{ $seminar->event_date }}</td>
+                        
+                        {{-- Hari --}}
+                        <td>{{ \Carbon\Carbon::parse($seminar->date)->format('l') }}</td>
+
+                        {{-- Jam --}}
+                        <td>{{ \Carbon\Carbon::parse($seminar->start)->format('H:i') }}</td>
+                      </tr>
+                    @endforeach
+                  @else
+                    <tr>
+                      <td colspan="3" class="text-center">
+                        Belum ada jadwal.
+                      </td>
+                    </tr>
+                  @endif
+                </tbody>
+              </table>
+            </div> <!-- end .table-responsive -->
+          </div> <!-- end .card-body -->
+        </div> <!-- end .card -->
+      </div> <!-- end .col -->
+
     </div> <!-- end .row -->
   </div>
 @endsection

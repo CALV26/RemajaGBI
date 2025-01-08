@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\SundaySchoolClass;
+use App\Models\Baptist;
+use App\Models\Seminar;
 use App\Models\Activity;
 
 class LandingController extends Controller
@@ -13,10 +14,12 @@ class LandingController extends Controller
     {
         // Pastikan Model SundayClass dan relasinya sudah di-define:
         // SundayClass -> hasMany -> Schedule
-        $classes = SundaySchoolClass::with('schedules')->get();
+        // $classes = SundaySchoolClass::with('schedules')->get();
+        $baptists= Baptist::with('details')->get();
+        $seminars= Seminar::orderBy('event_date', 'desc')->get();
 
         // Kirim data ini ke view landing.blade.php
-        return view('welcome', compact('classes'));
+        return view('welcome', compact('baptists', 'seminars'));
     }
 
     public function index()

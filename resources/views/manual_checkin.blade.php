@@ -58,7 +58,7 @@
             </div>
 
             <!-- Tombol Simpan -->
-            <div class="mt-4 text-end">
+            <div class="mt-4 d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary">Simpan Checklist</button>
             </div>
         </form>

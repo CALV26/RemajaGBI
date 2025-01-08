@@ -10,9 +10,9 @@
                 <x-input-area name="description" id="inputdeskripsi" label="Deskripsi" placeholder="Masukan deskripsi Pembaptisan" :required="false"/>
             </div>
             <footer class="card-footer text-right">
-                <button type="submit" class="btn btn-primary">Simpan</button>
-                <button type="reset" class="btn btn-default">Reset</button>
-                <a href="{{ url()->previous() }}" class="btn btn-success">Kembali</a>
+                <button type="submit" class="btn btn-success">Simpan</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+                <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>
             </footer>
         </section>
     </form>

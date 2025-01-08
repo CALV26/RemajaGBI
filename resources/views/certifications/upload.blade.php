@@ -61,9 +61,9 @@
                     />
 
                     <footer class="card-footer text-right">
-                        <button type="submit" class="btn btn-primary">Unggah</button>
-                        <button type="reset" class="btn btn-default">Reset</button>
-                        <a href="{{ url()->previous() }}" class="btn btn-success">Kembali</a>
+                        <button type="submit" class="btn btn-success">Unggah</button>
+                        <button type="reset" class="btn btn-secondary">Reset</button>
+                        <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>
                     </footer>
                 </form>
             @endif

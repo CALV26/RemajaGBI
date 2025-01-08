@@ -10,9 +10,9 @@
                     <x-input-area name="description" id="inputdeskripsi" label="Deskripsi" placeholder="Masukan deskripsi kategori jadwal" :required="true"/>
             </div>
             <footer class="card-footer text-right">
-                <button type="submit" class="btn btn-primary">Simpan</button>
-                <button type="reset" class="btn btn-default">Reset</button>
-                <a href="{{ route ('category.index') }}" class="btn btn-success">Kembali</a>
+                <button type="submit" class="btn btn-success">Simpan</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+                <a href="{{ route ('category.index') }}" class="btn btn-primary">Kembali</a>
             </footer>
         </section>
     </form>

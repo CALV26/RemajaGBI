@@ -33,17 +33,26 @@
     />
 
     <style>
+      html,
+      body{
+        background: rgb(30,30,30);
+        color: rgb(240, 240, 240);
+      }
+
       /* =================== HERO SECTION =================== */
       /* Awalnya, hero hanya menata tata letak */
       .hero {
         position: relative;   
         overflow: hidden;     /* mencegah pseudo-element keluar dari kontainer */
-        min-height: 60vh;
+        min-height: 93vh;
         display: flex;
         align-items: center;
         justify-content: center;
         color: #fff;
         text-align: center;
+        opacity: 0;
+        background: url("{{ asset('admintemp/img/hero-landing.jpg') }}") center/cover no-repeat;
+        animation: fadeInBg 2.5s ease forwards;
       }
 
       /* Pseudo-element untuk background */
@@ -51,9 +60,8 @@
         content: "";
         position: absolute;
         inset: 0; /* top:0; right:0; bottom:0; left:0 */
-        background: url("{{ asset('admintemp/img/landing.jpg') }}") center/cover no-repeat;
-        opacity: 0;
-        animation: fadeInBg 3s ease forwards; /* Durasi 2s, silakan ubah sesuka hati */
+        background: linear-gradient(to bottom, rgba(18,18,18,1), rgba(18,18,18,0));
+        z-index: 1;
       }
 
       /* Keyframes fadeInBg */
@@ -79,20 +87,25 @@
       }
       .hero h1,
       .hero p {
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+        color: rgb(240, 240, 240);
+        position: relative; /* Ensures text is above the overlay */
+        z-index: 2;
         animation: fadeIn 1s ease forwards;
       }
 
       .hero h1 {
         font-size: 3rem;
         font-weight: 700;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
       }
       .hero p {
         font-size: 1.2rem;
       }
 
       /* =================== NAVBAR =================== */
+      .navbar{
+        background: linear-gradient(to top,rgba(18,18,18,1), rgba(24,24,24,1));
+      }
+
       .navbar-dark .navbar-nav .nav-link {
         position: relative;
         color: #fff;
@@ -100,23 +113,7 @@
         margin: 0 0.025rem; 
         padding: 0.5rem;
       }
-
-      /* Garis tipis di bawah teks yang muncul saat hover */
-      .navbar-dark .navbar-nav .nav-link:not(.dropdown-toggle)::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 0%;
-        height: 2px;
-        background-color: #0d6efd;
-        transition: width 0.2s ease;
-      }
-      /* Efek garis memanjang hanya untuk nav-link biasa, bukan dropdown */
-      .navbar-dark .navbar-nav .nav-link:not(.dropdown-toggle):hover::after {
-        width: 100%;
-      }
-
+      
       /* Perubahan warna teks hanya untuk nav-link biasa, bukan dropdown */
       .navbar-dark .navbar-nav .nav-link:not(.dropdown-toggle):hover {
         color: #0d6efd;
@@ -159,6 +156,8 @@
       .footer-link:hover {
         color: #0d6efd;           /* Warna teks saat hover (sesuai navbar) */
       }
+
+      /* =========== CARD =========== */
       .card {
           border-radius: 15px;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -166,13 +165,35 @@
       }
 
       .card:hover {
-          transform: scale(1.05); /* Zoom efek saat hover */
+          transform: scale(1.02); /* Zoom efek saat hover */
       }
+
+      /* =========== CHURCH =========== */
+    .church { 
+      position: relative; 
+      min-height: 60vh; 
+      background: url("{{ asset('admintemp/img/church.jpg') }}") center/cover no-repeat; 
+      display: block; 
+    }   
+    .church::before { 
+      content: ""; 
+      position: absolute; 
+      inset: 0; 
+      background: linear-gradient(3deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.9), rgba(71, 85, 115, 0.84), rgba(48, 106, 192, 0.71));
+      z-index: 1;
+    } 
+    .church h3, 
+    .church p { 
+      position: relative;
+      z-index: 2;
+    }
+
+
     </style>
 </head>
 <body>
   {{-- ================== NAVBAR ================== --}}
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
       <!-- Brand -->
       <a class="navbar-brand d-flex align-items-center" href="#">
@@ -181,7 +202,7 @@
           alt="Logo GBI"
           style="height: 40px; margin-right: 8px; border-radius: 50%; object-fit: cover;"
         />
-        <span>GBI Sungai Yordan</span>
+        <span class="ms-2">GBI Sungai Yordan</span>
       </a>
 
       <button 
@@ -205,7 +226,7 @@
 
           {{-- SCROLL KE #jadwal DI LANDING --}}
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('/') }}#jadwal">Jadwal Sekolah Minggu</a>
+            <a class="nav-link" href="{{ url('/') }}#jadwal">Jadwal</a>
           </li>
 
           {{-- HALAMAN ACTIVITY (LANDING ACTIVITIES) --}}

@@ -6169,7 +6169,7 @@ ul.nav-main > li.nav-active > i {
 }
 
 ul.nav-main > li.nav-expanded > a {
-	background: #21262d;
+	background: #21262d00;
 }
 
 ul.nav-main li {
@@ -6212,6 +6212,7 @@ ul.nav-main li i {
 }
 
 ul.nav-main li.nav-parent {
+	background: rgba(0, 0, 0, 0);
 	position: relative;
 }
 
@@ -6239,10 +6240,13 @@ ul.nav-main li.nav-parent.nav-expanded > ul.nav-children {
 }
 
 ul.nav-main li .nav-children {
-	background: #191c21;
+	background:rgba(49, 54, 62, 0.266); /* Semi-transparent background */
 	box-shadow: 0px -3px 3px -3px rgba(0, 0, 0, 0.7) inset;
 	display: none;
 	padding: 10px 0;
+	backdrop-filter: blur(10px); /* Apply blur effect */ 
+	-webkit-backdrop-filter: blur(10px); /* For Safari support */ 
+	border: 1px solid rgba(255, 255, 255, 0.18); /* Optional: Add a border to enhance the glass effect */
 }
 
 ul.nav-main li .nav-children li a {
