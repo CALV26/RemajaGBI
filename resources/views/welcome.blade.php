@@ -145,7 +145,7 @@
                     <th>Hari Kelas</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                   @if(isset($baptists) && $baptists->count() > 0)
                     @foreach($baptists as $baptist)
                       @foreach($baptist->details as $detail)
@@ -190,7 +190,7 @@
                     <th>Jam</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                   @if(isset($seminars) && $seminars->count() > 0)
                     @foreach($seminars as $seminar)
                       <tr>

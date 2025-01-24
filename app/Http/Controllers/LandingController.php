@@ -16,7 +16,7 @@ class LandingController extends Controller
         // SundayClass -> hasMany -> Schedule
         // $classes = SundaySchoolClass::with('schedules')->get();
         $baptists= Baptist::with('details')->get();
-        $seminars= Seminar::orderBy('event_date', 'desc')->get();
+        $seminars = Seminar::where('status', 'open')->orderBy('event_date', 'desc')->get();
 
         // Kirim data ini ke view landing.blade.php
         return view('welcome', compact('baptists', 'seminars'));

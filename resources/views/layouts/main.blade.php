@@ -133,29 +133,29 @@
       }
       .footer-link {
         position: relative;
-        color: #fff;              /* Warna teks default */
+        color: rgb(240,240,240);              /* Warna teks default */
         transition: color 0.2s ease;
         display: inline-block;    /* Pastikan inline-block agar efek garis bekerja */
         padding-bottom: 2px;      /* Ruang di bawah teks untuk garis */
         margin: 0.25rem 0;
         text-decoration: none;
       }
-      .footer-link::after {
+      /* .footer-link::after {
         content: "";
         position: absolute;
         left: 0;
         bottom: 0;
         width: 0%;
         height: 2px;
-        background-color: #0d6efd; /* Warna garis bawah (bisa Anda ubah) */
+        background-color: #0d6efd;
         transition: width 0.2s ease;
       }
       .footer-link:hover::after {
         width: 100%;
       }
       .footer-link:hover {
-        color: #0d6efd;           /* Warna teks saat hover (sesuai navbar) */
-      }
+        color: #0d6efd;
+      } */
 
       /* =========== CARD =========== */
       .card {

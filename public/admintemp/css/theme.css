@@ -428,13 +428,14 @@ a:active {
 	}
 
 	.header {
-		background: none;
+		background: rgb(30 30 30);
 		border: none;
 		height: auto;
 		position: static;
 	}
 
 	.header .logo-container {
+		background: rgb(30 30 30);
 		height: 60px;
 		left: 0;
 		position: fixed;
@@ -444,7 +445,7 @@ a:active {
 	}
 
 	.header .header-right {
-		background: #FFF;
+		background: rgb(30 30 30);
 		float: none !important;
 		height: 60px;
 		margin-top: 60px;
@@ -453,7 +454,7 @@ a:active {
 
 	.inner-wrapper {
 		min-height: 0;
-		padding-top: 0;
+		padding-top: 16px;
 	}
 
 	.content-body {
@@ -2312,7 +2313,7 @@ html.sidebar-right-opened .page-header .sidebar-right-toggle i:before {
 /* Page Header - Mobile */
 @media only screen and (max-width: 767px) {
 	.page-header {
-		padding-right: 80px;
+		display: none;
 	}
 
 	.page-header .breadcrumbs {
@@ -3943,9 +3944,9 @@ html.has-left-sidebar-half .header {
 /* Header Mobile */
 @media only screen and (max-width: 767px) {
 	.header .logo-container {
-		background-image: linear-gradient(#F6F6F6 0%, #FFFFFF 45%);
-		border-bottom: 1px solid #E9E9E6;
-		border-top: 3px solid #EDEDED;
+		background: rgb(30 30 30);
+		border-bottom: 0.5px solid rgb(231, 237, 237);
+		border-top: 3px solid rgba(231, 237, 237,0);
 	}
 
 	.header .logo-container .logo {
@@ -17625,7 +17626,6 @@ p.drop-caps.drop-caps-style-2:first-letter {
 @media only screen and (max-width: 767px) {
 	.userbox .name,
 	.userbox .role {
-		max-width: 68px;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
@@ -17687,8 +17687,8 @@ p.drop-caps.drop-caps-style-2:first-letter {
 /* Userbox - Mobile */
 @media only screen and (max-width: 767px) {
 	.userbox {
-		float: left;
-		margin: 16px 0 0 12px;
+		float: right;
+        margin: 16px 16px 0 0;
 		position: relative;
 	}
 

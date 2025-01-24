@@ -36,16 +36,17 @@
 
             /* ==================== SIDE BAR ==================== */
             #sidebar-left{
-                background: linear-gradient(190deg, rgb(30,30,30), rgb(18,18,18),rgb(33, 66, 94), rgb(101, 146, 125));
+                background: linear-gradient(190deg, rgb(30,30,30), rgb(18,18,18),rgb(33, 66, 94), rgb(101, 146, 125)) no-repeat fixed center;
             }
             .sidebar-left .sidebar-header .sidebar-title  {
                 background: linear-gradient(to right,rgb(27,27,27),rgb(29,29,29));
             }
             #sidebar-left .nano{
-                background: rgba(0,0,0,0);
+                /* background: rgba(0,0,0,0); */
+                background: linear-gradient(190deg, rgb(30,30,30), rgb(18,18,18),rgb(33, 66, 94), rgb(101, 146, 125)) no-repeat fixed center;
             }
             #sidebar-left .nano .nano-content {
-                background: linear-gradient(190deg, rgb(30,30,30), rgb(18,18,18),rgb(33, 66, 94), rgb(101, 146, 125));
+                /* background: linear-gradient(190deg, rgb(30,30,30), rgb(18,18,18),rgb(33, 66, 94), rgb(101, 146, 125)) no-repeat fixed center; */
             }
             #sidebar-left .nav-main ul li a {
                 color: white !important;
@@ -258,7 +259,7 @@
 						<div class="right-wrapper text-right" style="padding-right: 20px">
 							<ol class="breadcrumbs">
 								<li>
-									<a href="{{url ('dashboard')}}">
+									<a href="{{url ('')}}">
 										<i class="bx bx-home-alt"></i>
 									</a>
 								</li>
