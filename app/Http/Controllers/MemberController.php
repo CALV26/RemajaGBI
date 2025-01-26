@@ -100,7 +100,7 @@ class MemberController extends Controller
         $positionId = $request->position_id;
         $roleName = $positionId == Position::where('name', 'Jemaat')->first()->id
             ? 'Jemaat'
-            : ($positionId == Position::where('name', 'Pembina')->first()->id ? 'Admin' : null);
+            : ($positionId == Position::where('name', 'Pengurus')->first()->id ? 'Admin' : null);
 
         if ($roleName) {
             $user->assignRole($roleName); // Berikan role ke user

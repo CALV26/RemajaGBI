@@ -59,7 +59,7 @@
       <div class="row">
         @foreach($activities as $activity)
           <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm animate__animated animate__fadeInUp">
+            <div class="card bg-dark text-light h-100 shadow-sm animate__animated animate__fadeInUp">
               <!-- Poster Kegiatan -->
               @if($activity->poster_file)
                 <img 
@@ -79,7 +79,7 @@
               <!-- Content -->
               <div class="card-body">
                 <h5 class="card-title">{{ $activity->title }}</h5>
-                <p class="card-text text-muted">
+                <p class="card-text text-white">
                   {{ Str::limit($activity->description, 100) }}
                 </p>
                 <ul class="list-unstyled">
@@ -96,7 +96,7 @@
               </div>
 
               <!-- Footer -->
-              <div class="card-footer text-center">
+              <div class="card-footer text-center py-3">
                 <button 
                   type="button" 
                   class="btn btn-primary btn-sm"

@@ -30,7 +30,7 @@
                         <td>{{ $detail->description ?? 'Tidak ada deskripsi' }}</td>
                         <td>
                             {{-- Tampilkan tombol Absensi jika pertemuan sesuai tanggal dan waktu --}}
-                            @if ($detail->date === $today && $currentTime >= '00:00')
+                            @if ($detail->date === $today)
                                 <a href="{{ route('baptist-class-detail.attendanceForm', encrypt($detail->id)) }}" class="btn btn-primary">Absensi</a>
                             @else
                                 <span class="text-muted">Belum Waktu Absensi</span>

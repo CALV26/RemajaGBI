@@ -72,6 +72,7 @@ class ActivityController extends Controller
 
     //     return response()->json(['message' => 'Callback received successfully']);
     // }
+
     public function registerFormfree($activityId)
     {
         $activity = Activity::findOrFail($activityId);
@@ -112,6 +113,7 @@ class ActivityController extends Controller
 
         return view('activities.selfregisterfree', compact('activity'));
     }
+    
     // public function registerForm($activityId)
     // {
     //     $activity = Activity::findOrFail($activityId);
