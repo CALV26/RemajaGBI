@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('activity_id')->constrained('activities')->onDelete('cascade'); // FK ke activities
             $table->foreignId('member_id')->constrained('members')->onDelete('cascade'); // FK ke members (anak)
-            $table->foreignId('payment_id')->nullable()->constrained('activity_payments')->onDelete('cascade'); // FK ke activity payments
             $table->timestamps();
         });
     }

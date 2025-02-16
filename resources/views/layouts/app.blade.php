@@ -216,7 +216,7 @@
 
                         <x-side-link href="#" :active="request()->is('activities*') || request()->is('activity*')" class="nav-parent" :items="[
                             ['url' => url('activities'), 'label' => 'List Pengajuan'],
-                            ['url' => route('listactivitiesmember.index'), 'label' => 'List Kegiatan'],
+                            ['url' => url('activity-list-member'), 'label' => 'List Kegiatan'],
                         ]">
                             <i class="bx bxs-calendar-event" aria-hidden="true"></i>
                             <span>Kegiatan</span>

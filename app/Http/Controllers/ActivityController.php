@@ -14,6 +14,7 @@ use App\Models\SelfActivityRegistration;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use App\Models\SelfActivityPayment;
 // use Midtrans\Config;
 // use Midtrans\Snap;
 
@@ -98,6 +99,7 @@ class ActivityController extends Controller
         // Kirim data ke view
         return view('activities.childrenregisterfree', compact('activity', 'allChildren', 'registeredChildrenIds', 'unregisteredChildren'));
     }
+
     public function registerSelfFormFree($activityId)
     {
         $activity = Activity::findOrFail($activityId);
@@ -112,6 +114,22 @@ class ActivityController extends Controller
         }
 
         return view('activities.selfregisterfree', compact('activity'));
+    }
+
+    public function registerSelfFormPaid($activityId)
+    {
+        $activity = Activity::findOrFail($activityId);
+
+        // Periksa apakah pengguna sudah terdaftar
+        $isAlreadyRegistered = SelfActivityRegistration::where('activity_id', $activityId)
+            ->where('member_id', Auth::user()->member->id)
+            ->exists();
+
+        if ($isAlreadyRegistered) {
+            return redirect()->back()->withErrors('Anda sudah terdaftar di kegiatan ini.');
+        }
+
+        return view('activities.selfregisterpaid', compact('activity'));
     }
     
     // public function registerForm($activityId)
@@ -190,6 +208,7 @@ class ActivityController extends Controller
 
         return view('activities.parentindex', compact('activities', 'children', 'registeredChildren'));
     }
+
     public function indexMember(Request $request)
     {
         // Ambil semua kegiatan yang sudah disetujui
@@ -225,12 +244,15 @@ class ActivityController extends Controller
             // Periksa apakah masih dalam rentang waktu pendaftaran
             $isWithinRegistrationPeriod = now()->between($activity->registration_open_date, $activity->registration_close_date);
 
+            $isFull = $activity->max_participants && $activity->registrationmembers->count() >= $activity->max_participants;
+
             // Tentukan apakah tombol daftar muncul
-            $activity->showRegisterButton = !$isRegistered && $isWithinRegistrationPeriod;
+            $activity->showRegisterButton = !$isRegistered && $isWithinRegistrationPeriod && !$isFull;
         }
 
-        return view('activities.memberindex', compact('activities'));
+        return view('activities.memberindex', compact('activities', 'registeredActivities'));
     }
+
     public function registerfree(Request $request, $activityId)
     {
         
@@ -270,6 +292,7 @@ class ActivityController extends Controller
         // Jika kegiatan tidak berbayar, kembali ke daftar kegiatan
         return redirect()->route('activities.parent.index')->with('success', 'Anak berhasil didaftarkan ke kegiatan.');
     }
+    
     public function registerSelfFree(Request $request, $activityId)
     {
         $activity = Activity::findOrFail($activityId);
@@ -298,6 +321,58 @@ class ActivityController extends Controller
 
         return redirect()->route('activities.member.index')->with('success', 'Anda berhasil mendaftarkan diri ke kegiatan.');
     }
+    
+
+    /**
+     * Menyimpan data pendaftaran kegiatan berbayar
+     */
+    public function registerSelfPaid(Request $request, $activityId)
+    {
+        $activity = Activity::findOrFail($activityId);
+        $memberId = Auth::user()->member->id;
+
+        // Validasi form
+        $request->validate([
+            'payment_proof' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Hanya menerima gambar maks 2MB
+        ]);
+
+        // Periksa apakah member sudah terdaftar
+        $isAlreadyRegistered = SelfActivityRegistration::where('activity_id', $activityId)
+            ->where('member_id', $memberId)
+            ->exists();
+
+        if ($isAlreadyRegistered) {
+            return redirect()->back()->withErrors('Anda sudah terdaftar di kegiatan ini.');
+        }
+
+        // Periksa apakah kegiatan memiliki batas maksimal peserta
+        $isFull = $activity->max_participants && $activity->registrations->count() >= $activity->max_participants;
+
+        if ($isFull) {
+            return redirect()->back()->withErrors('Kegiatan ini sudah penuh.');
+        }
+
+        // Simpan bukti pembayaran
+        $paymentProofPath = $request->file('payment_proof')->store('payments', 'public');
+
+        // Simpan data pembayaran
+        $payment = SelfActivityPayment::create([
+            'member_id' => $memberId,
+            'total_amount' => $activity->price,
+            'payment_proof' => $paymentProofPath,
+            'payment_status' => 'Diproses', // Menunggu verifikasi admin
+        ]);
+
+        // Simpan data pendaftaran
+        SelfActivityRegistration::create([
+            'activity_id' => $activityId,
+            'member_id' => $memberId,
+            'payment_id' => $payment->id,
+        ]);
+
+        return redirect()->route('activities.member.index')->with('success', 'Pendaftaran berhasil! Tunggu verifikasi pembayaran.');
+    }
+
     // public function register(Request $request, $activityId)
     // {
     //     $activity = Activity::findOrFail($activityId);
@@ -504,7 +579,7 @@ class ActivityController extends Controller
     }
     public function indexAdminMember(Request $request)
     {
-        $activities = Activity::where('status', 'approved')->with('registrations')->paginate(10);
+        $activities = Activity::where('status', 'approved')->with('registrationmembers')->paginate(10);
 
         return view('activities.adminmemberindex', compact('activities'));
     }
@@ -536,17 +611,36 @@ class ActivityController extends Controller
     {
         $activity = Activity::findOrFail($id);
 
-        // Ambil halaman saat ini untuk peserta
-        $participantsPage = request('participantsPage', 1);
+    // Peserta yang mendaftar tanpa biaya
+        $freeParticipants = SelfActivityRegistration::where('activity_id', $id)
+            ->whereNull('payment_id') // Peserta gratis
+            ->with('member')
+            ->get();
 
-        // Daftar peserta yang mendaftarkan diri sendiri
-        $participantsQuery = SelfActivityRegistration::where('activity_id', $id)
-            ->with('member');
+        // Peserta yang mendaftar dengan biaya
+        $paidParticipants = SelfActivityRegistration::where('activity_id', $id)
+            ->whereNotNull('payment_id') // Peserta berbayar
+            ->with(['member', 'payment'])
+            ->get();
 
-        // Pagination
-        $participants = $this->paginateQuery($participantsQuery->get(), 10, $participantsPage, 'participantsPage');
+        return view('activities.adminmemberparticipants', compact('activity', 'freeParticipants', 'paidParticipants'));
+    }
 
-        return view('activities.adminmemberparticipants', compact('activity', 'participants'));
+    public function verifyMemberPayment(Request $request, $paymentId)
+    {
+        $payment = SelfActivityPayment::findOrFail($paymentId);
+        $status = $request->input('status'); // "approved" atau "rejected"
+
+        if (!in_array($status, ['Berhasil', 'Ditolak'])) {
+            return redirect()->back()->withErrors('Status tidak valid.');
+        }
+
+        $payment->update([
+            'payment_status' => $status,
+            'verified_by' => Auth::id(),
+        ]);
+
+        return redirect()->back()->with('success', 'Status pembayaran diperbarui.');
     }
 
     private function paginateQuery(Collection $items, $perPage, $currentPage, $pageName = 'page')

@@ -80,7 +80,7 @@
               <div class="card-body">
                 <h5 class="card-title">{{ $activity->title }}</h5>
                 <p class="card-text text-white">
-                  {{ Str::limit($activity->description, 100) }}
+                  {{ $activity->description }}
                 </p>
                 <ul class="list-unstyled">
                   <li><strong>Tanggal Mulai:</strong> {{ \Carbon\Carbon::parse($activity->start_date)->format('d M Y') }}</li>

@@ -29,6 +29,6 @@ class SelfActivityRegistration extends Model
     // Relasi ke pembayaran
     public function payment()
     {
-        return $this->belongsTo(ActivityPayment::class, 'payment_id');
+        return $this->belongsTo(SelfActivityPayment::class, 'payment_id');
     }
 }

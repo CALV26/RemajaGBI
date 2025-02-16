@@ -227,7 +227,13 @@ Route::get('/activities-member/free/{activityId}', [ActivityController::class, '
 
 Route::post('/activities-member/free/{activityId}', [ActivityController::class, 'registerSelfFree'])->name('activities.selfregisterfree');
 
+Route::get('/activities-member/paid/{activityId}', [ActivityController::class, 'registerSelfFormPaid'])->name('activities.selfregisterpaid.form');
+
+Route::post('/activities-member/paid/{activityId}', [ActivityController::class, 'registerSelfPaid'])->name('activities.selfregisterpaid');
+
 Route::get('/activity-list-member', [ActivityController::class, 'indexAdminMember'])->name('listactivitiesmember.index');
+
+Route::post('/activity-list-member/{payment}/verify', [ActivityController::class, 'verifyMemberPayment'])->name('memberactivities.verify');
 
 Route::get('/member/activities/{id}/participants', [ActivityController::class, 'viewSelfParticipants'])->name('activities.member.participants');
 

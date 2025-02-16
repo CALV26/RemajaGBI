@@ -63,18 +63,38 @@
             </thead>
             <tbody>
                 @forelse($activities as $activity)
+                    @php
+                        $isFull = $activity->max_participants && $activity->registrationmembers->count() >= $activity->max_participants;
+                    @endphp
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $activity->title }}</td>
                         <td>{{ $activity->description ?? '-' }}</td>
                         <td>{{ $activity->start_date }}</td>
                         <td>
-                            @if ($activity->showRegisterButton)
-                                <span class="badge bg-success text-white badge-custom">Tersedia untuk Pendaftaran</span>
-                            @else
-                                <span class="badge bg-secondary text-white badge-custom">Tidak Tersedia</span>
-                            @endif
-                        </td>
+    @if ($activity->is_paid)
+    @php
+        // Ambil pembayaran terkait dengan aktivitas ini dan member yang sedang login
+        $payment = $activity->registrationmembers()->where('member_id', Auth::user()->member->id)->first()?->payment;
+    @endphp
+        @if ($payment)
+            @if ($payment->payment_status == 'Diproses')
+                <span class="badge bg-warning text-dark badge-custom">Pembayaran Diproses</span>
+            @elseif ($payment->payment_status == 'Berhasil')
+                <span class="badge bg-success text-white badge-custom">Berhasil Dibayar</span>
+            @endif
+        @else
+            <span class="badge bg-danger text-white badge-custom">Belum Bayar</span>
+        @endif
+    @else
+        @if ($registeredActivities->contains($activity->id))
+            <span class="badge bg-primary text-white badge-custom">Terdaftar</span>
+        @else
+            <span class="badge bg-secondary text-white badge-custom">Belum Terdaftar</span>
+        @endif
+    @endif
+</td>
+
                         <td>{{ $activity->registration_open_date }}</td>
                         <td>{{ $activity->registration_close_date }}</td>
                         <td>
@@ -86,7 +106,7 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="posterModalLabel">Poster Kegiatan</h5>
+                                                <h5 class="modal-title text-dark" id="posterModalLabel">Poster Kegiatan</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">&times</button>
                                             </div>
                                             <div class="modal-body text-center">
@@ -102,12 +122,14 @@
                         <td>
                             @if ($activity->showRegisterButton)
                                 @if ($activity->is_paid)
-                                    <a href="#" class="btn btn-success btn-sm">Daftar</a>
+                                    <a href="{{ route('activities.selfregisterpaid.form', $activity->id) }}" class="btn btn-success btn-sm">Daftar</a>
                                 @else
                                     <a href="{{ route('activities.selfregisterfree.form', $activity->id) }}" class="btn btn-success btn-sm">Daftar</a>
                                 @endif
-                            @else
-                                <span class="text-muted">Sudah Terdaftar</span>
+                        
+                            @endif
+                            @if($isFull)
+                            <p>Slot Penuh</p>
                             @endif
                         </td>
                     </tr>
